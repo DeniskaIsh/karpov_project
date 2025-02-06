@@ -164,7 +164,7 @@ checks_df[checks_df.rev > checks_df.rev.quantile(0.995)]
 
 
 #Склеим все данные и добавим колонку isActive, чтобы видеть активных пользователей
-full_df = groups_df.rename(columns={'id' : 'student_id'}).merge(active_studs_df, how='outer', on='student_id')    .merge(checks_df, how='outer', on='student_id')
+full_df = groups_df.rename(columns={'id' : 'student_id'}).merge(active_studs_df, how='outer', on='student_id').merge(checks_df, how='outer', on='student_id')
 full_df['isActive'] = 0
 full_df['isActive'] = np.where([i in active_studs_df.student_id.values for i in full_df.student_id],1, 0)
 full_df
